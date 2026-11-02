@@ -1,0 +1,68 @@
+\documentclass[conference,onecolumn]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{url}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage[backend=biber,style=ieee,sorting=none,isbn=false,url=true,doi=true]{biblatex}
+\addbibresource{referencias.bib}
+
+\usepackage{ragged2e}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\renewcommand{\arraystretch}{1.13}
+\newcommand{\si}{\ensuremath{\checkmark}}
+\newcommand{\no}{\ensuremath{\times}}
+\newcommand{\req}[2]{\par\noindent\textbf{#1:} #2\par\smallskip}
+\setlength{\emergencystretch}{1em}
+\AtBeginDocument{\spanishplainpercent}
+\renewcommand{\IEEEkeywordsname}{Palabras clave}
+
+\begin{document}
+\title{Especificación preliminar de requisitos\\\large Sistema de cobro de impuestos prediales en línea para un GAD cantonal del Ecuador}
+\author{\IEEEauthorblockN{TA01 - Mendoza Palma Allan Jeremy}
+\IEEEauthorblockA{Universidad Técnica Estatal de Quevedo UTEQ\\Modalidad individual}}
+\maketitle
+\vspace{-1.5em}
+\noindent\textbf{Base metodológica:} ISO/IEC/IEEE 29148:2018 \cite{iso29148}.
+
+\section*{1. Identificación de stakeholders}
+\begin{table}[H]
+\centering
+\caption{Stakeholders y necesidades preliminares}
+\label{tab:stakeholders}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\columnwidth}{@{}L{0.28\columnwidth}L{0.26\columnwidth}Y@{}}
+\toprule
+\textbf{Stakeholder} & \textbf{Rol} & \textbf{Necesidades}\\
+\midrule
+Contribuyentes & Usuarios que consultan y cancelan obligaciones. & Consultar saldo por clave catastral; obtener constancia de pago.\\
+Dirección Financiera / Tesorería del GAD & Recaudación y control de ingresos. & Aplicar reglas tributarias aprobadas; rastrear pagos confirmados.\\
+Dirección de Avalúos y Catastros & Administración de información predial. & Identificar claves catastrales; proporcionar bases imponibles actualizadas.\\
+Servicio de Rentas Internas (SRI) & Intercambio institucional autorizado. & Recibir datos acordados; validar la estructura de los intercambios.\\
+Proveedor de pasarela local & Procesamiento de transacciones. & Recibir solicitudes conforme a contrato de interfaz; comunicar estados verificables.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\section*{2. Requisitos funcionales y no funcionales}
+\subsection*{2.1. Requisitos funcionales}
+\req{RF-01}{El sistema deberá mostrar el saldo pendiente asociado a una clave catastral cuando el contribuyente solicite la consulta con una clave catastral válida, con el fin de identificar el importe adeudado.}
+\req{RF-02}{El sistema deberá calcular el total exigible en dólares estadounidenses sumando impuesto predial, intereses y recargos según la tabla tributaria versionada aprobada por Tesorería cuando exista una obligación impaga, con el fin de determinar el importe cobrable.}
+\req{RF-03}{El sistema deberá procesar el pago electrónico de una obligación predial mediante la pasarela contratada cuando el contribuyente confirme el importe calculado, con el fin de permitir la recaudación en línea.}
+\req{RF-04}{El sistema deberá emitir un comprobante municipal de pago con identificador único, clave catastral, importe, fecha y referencia de transacción cuando la pasarela confirme el pago como aprobado, con el fin de respaldar la operación realizada.}
+\req{RF-05}{El sistema deberá conciliar cada registro de recaudación predial intercambiado con el SRI contra su acuse correspondiente cuando el SRI devuelva la respuesta por el canal interinstitucional autorizado, con el fin de identificar registros rechazados.}
+
+\printbibliography[title={Referencias}]
+\end{document}
