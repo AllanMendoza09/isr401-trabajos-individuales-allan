@@ -121,5 +121,74 @@ RNF-05 & Compatibilidad & Verifica interpretación de respuestas según contrato
 \end{tabularx}
 \end{table}
 
+
+\section*{4. Restricciones y dependencias}
+\subsection*{4.1. Restricciones}
+\begin{table}[H]
+\centering
+\caption{Restricciones del proyecto}
+\label{tab:restricciones}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\columnwidth}{@{}L{0.15\columnwidth}Y@{}}
+\toprule
+\textbf{ID} & \textbf{Restricción y justificación}\\
+\midrule
+RES-01 & Tratar datos catastrales y personales conforme a la Ley Orgánica de Protección de Datos Personales de Ecuador \cite{ley_proteccion_datos_ec}. Las consultas pueden incluir datos identificables y exigen una base jurídica y controles pertinentes.\\
+RES-02 & Utilizar la pasarela de pagos local seleccionada por el GAD y su interfaz contractual. La contratación delimita los mecanismos autorizados de cobro.\\
+RES-03 & Intercambiar datos con el SRI solo mediante habilitación interinstitucional y campos autorizados \cite{sri_interoperabilidad}. La existencia del portal no implica una API de conciliación predial.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\subsection*{4.2. Dependencias entre requisitos}
+\begin{table}[H]
+\centering
+\caption{Relaciones de dependencia}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\columnwidth}{@{}L{0.35\columnwidth}Y@{}}
+\toprule
+\textbf{Dependencia} & \textbf{Razón}\\
+\midrule
+RF-03 depende de RF-02 & El cobro necesita el importe calculado con las reglas tributarias aprobadas.\\
+RF-04 depende de RF-03 & El comprobante requiere la confirmación aprobada de la pasarela.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\section*{5. Métrica y método de verificación por RNF}
+La Tabla~\ref{tab:verificacion} especifica procedimientos de aceptación reproducibles y sus condiciones de prueba.
+\begin{table}[H]
+\centering
+\caption{Métricas, umbrales y métodos de verificación de los requisitos no funcionales}
+\label{tab:verificacion}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}L{0.073\textwidth}L{0.150\textwidth}L{0.108\textwidth}L{0.078\textwidth}L{0.203\textwidth}L{0.108\textwidth}Y@{}}
+\toprule
+\textbf{RNF} & \textbf{Métrica} & \textbf{Umbral} & \textbf{Unidad} & \textbf{Condiciones de medición} & \textbf{Método} & \textbf{Herramienta o procedimiento}\\
+\midrule
+RNF-01 & Porcentaje de respuestas completas en $\leq$ 3.000 ms, desde solicitud HTTP hasta respuesta. & $\geq$ 95\,\% en $\leq$ 3.000 ms. & \% y ms & 300 usuarios concurrentes; 30 min; pausa de 10 s/usuario; base sintética de 25.000 predios; entorno equivalente a producción. & Prueba & JMeter: plan de carga, CSV de resultados y cálculo de proporción de respuestas dentro del límite.\\
+RNF-02 & Cantidad de vulnerabilidades confirmadas con CVSS v3.1 $\geq$ 7,0. & 0 hallazgos confirmados. & Hallazgos & Versión candidata a producción; web/API públicos; pruebas autenticadas y no autenticadas; falsos positivos descartados. & Prueba & OWASP ZAP y penetración manual; puntuar los hallazgos y conservar evidencia de remediación.\\
+RNF-03 & Disponibilidad = 100 $\times$ (sondas exitosas / sondas programadas). & $\geq$ 99,5\,\% mensual. & \% por mes & Sonda HTTPS cada minuto, 24 h/día, durante todo el mes; éxito = HTTP 200 y saldo esperado para clave de prueba; mantenimiento incluido. & Prueba & Uptime Kuma o monitor externo: guardar registros de sondas e informe mensual.\\
+RNF-04 & Cantidad de participantes que consultan saldo correcto en $\leq$ 120 s, sin asistencia. & $\geq$ 18 de 20 (90\,\%). & Personas y s & 20 contribuyentes sin capacitación; un intento; página inicial desde móvil; clave válida; medir hasta visualizar saldo. & Demostración & Sesión moderada sin ayuda: cronómetro, hoja de observación y registro individual de éxito.\\
+RNF-05 & Respuestas con estado registrado igual al esperado según contrato. & 100 de 100 (100\,\%). & Respuestas & Certificación; 100 casos únicos válidos: 40 aprobados, 40 rechazados y 20 pendientes; contrato API vigente. & Prueba & Postman/Newman: ejecutar casos y comprobar el estado persistido por identificador.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\par\noindent\textbf{Aceptación:} cada RNF se aprueba si cumple su umbral bajo todas las condiciones indicadas, con resultados reproducibles. RF-05 exige un contrato y acuses de intercambio efectivamente autorizados por el SRI.
+
+\section*{Suposiciones}
+\begin{enumerate}
+\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}\setlength{\topsep}{2pt}
+\item Cantón mediano: 60.000 habitantes y 25.000 predios; los 300 usuarios concurrentes son un supuesto de carga, no una cifra oficial.
+\item Tesorería entregará reglas tributarias versionadas y casos esperados conforme a la ordenanza vigente.
+\item La pasarela tendrá ambiente de certificación, identificadores y estados documentados.
+\item RF-05 presupone un intercambio autorizado con acuses por registro; de no existir, se reformulará antes de contratar.
+\item Los objetivos de calidad propuestos requieren aprobación del GAD.
+\end{enumerate}
+
 \printbibliography[title={Referencias}]
 \end{document}
