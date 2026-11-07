@@ -204,8 +204,174 @@ E19 & Calidad de recuperabilidad & Funcional de recuperación & Expresa un resul
 \end{tabularx}
 \end{table}
 
+\subsection{Comparación de resultados con un compañero}
+
+Para esta actividad comparé mi documento con el trabajo de
+Winston Cedeño Ávila. Encontré que la mayoría de nuestras
+clasificaciones coinciden, especialmente en los requisitos
+funcionales y las restricciones tecnológicas.
+
+Las diferencias principales están en la característica de
+calidad de E10 y en la clasificación sistema/software de
+algunos requisitos de proceso.
+
+\begin{table}[H]
+\caption{Comparación de clasificaciones con Winston}
+\label{tab:discrepancias}
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{
+@{}p{0.07\linewidth}
+p{0.18\linewidth}
+p{0.19\linewidth}
+Y
+p{0.19\linewidth}@{}}
+\toprule
+\textbf{Código} &
+\textbf{Mi clasificación} &
+\textbf{Clasificación del compañero} &
+\textbf{Argumento} &
+\textbf{Resolución} \\
+\midrule
+
+E10 &
+Capacidad de interacción / facilidad de aprendizaje &
+Capacidad de interacción / inclusividad &
+Las dos pertenecen a capacidad de interacción.
+La primera se relaciona con aprender a usar la plataforma
+y la segunda con incluir a adultos mayores. &
+Considero ambas válidas. Mantengo facilidad de aprendizaje
+para la tarea de reserva. \\
+
+E11 &
+Restricción de proceso / Sistema (proyecto) &
+Restricción de proceso / No aplica &
+El plazo de seis meses corresponde al desarrollo del proyecto,
+no al funcionamiento del software. &
+Prefiero No aplica en la dimensión sistema/software,
+porque es una restricción del proceso. \\
+
+E16 &
+Restricción de proceso / Sistema (proyecto) &
+Restricción de proceso / No aplica &
+La validación cada dos semanas es una actividad del equipo
+durante el desarrollo. &
+Prefiero No aplica, ya que no describe una función
+del sistema terminado. \\
+
+E20 &
+Restricción de proceso / Software (desarrollo) &
+Restricción de proceso / No aplica &
+La revisión del código es una regla de trabajo
+para los desarrolladores. &
+Prefiero No aplica, porque regula el proceso
+y no una propiedad del producto. \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Diferencias en los requisitos cuantificables}
+
+También encontré diferencias en los valores propuestos para
+algunos requisitos de calidad. Aunque utilizamos las mismas
+características de ISO/IEC 25010:2023, no siempre escogimos
+los mismos umbrales.
+
+\begin{table}[H]
+\caption{Comparación de métricas propuestas}
+\label{tab:comparacion_metricas}
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{
+@{}p{0.09\linewidth}
+p{0.20\linewidth}
+p{0.20\linewidth}
+Y@{}}
+\toprule
+\textbf{Código} &
+\textbf{Mi propuesta} &
+\textbf{Propuesta de Winston} &
+\textbf{Mi resolución} \\
+\midrule
+
+E07 &
+Bloquear 60 de 60 accesos no autorizados. &
+Bloquear 150 de 150 accesos no autorizados. &
+Ambas buscan el 100\,\% de bloqueos en las pruebas.
+Mantengo 60 como propuesta inicial, pero una cantidad
+mayor permitiría probar más casos. \\
+
+E10 &
+17 de 20 adultos mayores completan una reserva
+en 5 minutos. &
+18 de 20 adultos mayores completan una reserva
+en 5 minutos. &
+Mi propuesta exige un 85\,\% de éxito y la de Winston
+un 90\,\%. Mantengo el 85\,\% inicialmente,
+sujeto a validación. \\
+
+E14 &
+99,5\,\% de disponibilidad mensual durante
+el horario de atención. &
+99,5\,\% de comprobaciones correctas durante 30 días. &
+Mantengo el horario de 07:00 a 19:00 porque es
+el horario definido en el caso. Debe confirmarse
+si las reservas estarán disponibles las 24 horas. \\
+
+E18 &
+Aprobar 40 de 40 pruebas de integración. &
+Registrar correctamente 50 de 50 cobros simulados. &
+Mantengo las 40 pruebas como punto de partida.
+Los casos definitivos deben acordarse con
+el proveedor de facturación. \\
+
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Resultado de la comparación}
+
+Al comparar los dos documentos observé que coincidimos
+en la clasificación principal de los veinte enunciados:
+funcionales, de calidad y restricciones.
+
+Las diferencias aparecen principalmente al interpretar
+algunas subcaracterísticas y al escoger los valores
+de las pruebas.
+
+En E12 los dos consideramos que el cierre de sesión
+es funcional, aunque tenga como propósito mejorar
+la seguridad. En E17 coincidimos en que se trata
+de una restricción legal y en E19 lo clasificamos
+como calidad relacionada con la recuperabilidad.
+
+La principal corrección que considero necesaria
+en mi clasificación es utilizar ``No aplica'' en
+la dimensión sistema/software de E11, E16 y E20,
+porque estos enunciados describen el proceso de
+desarrollo y no el producto terminado.
+
+Esta comparación se realizó a partir de los dos
+documentos escritos. Las resoluciones anteriores
+representan mi criterio después de revisarlos;
+no se presentan como acuerdos confirmados
+mediante una conversación con el compañero.
+
+La actividad me ayudó a entender que dos personas
+pueden interpretar de manera diferente un requisito.
+Por eso es necesario justificar las clasificaciones
+y definir métricas que después puedan comprobarse
+mediante pruebas.
+
+
 \section{Conclusión}
 Con esta actividad aprendí que no todos los enunciados son funciones: unos describen calidad y otros ponen condiciones al proyecto. También observé que palabras generales, como \enquote{rápido} o \enquote{seguro}, deben convertirse en criterios que se puedan comprobar. Las cifras propuestas sirven para practicar; antes de usarlas en un proyecto real habría que acordarlas con el policlínico.
+
+\section*{Uso de herramientas y revisión}
+Se utilizó ChatGPT para preparar un borrador, mejorar la redacción y organizar el archivo LaTeX. La clasificación se contrastó con la guía FORM-TL-01 y sus referencias. 
 
 \printbibliography[title={Referencias}]
 \end{document}
