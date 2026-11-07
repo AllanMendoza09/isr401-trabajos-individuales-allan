@@ -1,0 +1,90 @@
+\documentclass[conference,onecolumn]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
+\addbibresource{referencias.bib}
+\AtBeginDocument{\spanishplainpercent}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\si}{\ensuremath{\checkmark}}
+\newcommand{\no}{\ensuremath{\times}}
+\newcommand{\req}[1]{\par\noindent\textbf{#1.}\hspace{0.5em}}
+\renewcommand{\IEEEkeywordsname}{Palabras clave}
+
+\title{FORM-TL-01: Taller de tipos de requisitos\\Plataforma de gestión de citas médicas}
+\author{\IEEEauthorblockN{Mendoza Palma Allan Jeremy}\IEEEauthorblockA{Carrera de Software\\
+Universidad Técnica Estatal de Quevedo\\
+Ingeniería de Requerimientos (ISR-401), cuarto nivel}}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+En esta primera parte del taller se clasifican veinte enunciados de una plataforma de citas médicas. Se distingue entre funciones, requisitos de calidad y restricciones, y se explica brevemente cada elección.
+\end{abstract}
+\begin{IEEEkeywords}
+Ingeniería de requisitos, tipos de requisitos, calidad de software, ISO/IEC 25010.
+\end{IEEEkeywords}
+
+\section{Introducción}
+El Policlínico Ribera del Quevedo es un caso ficticio presentado en la guía. Atiende de lunes a sábado, de 07:00 a 19:00, y registra cerca de 450 citas diarias. Actualmente recibe solicitudes por teléfono o en ventanilla, tiene citas duplicadas y estima un 22\,\% de inasistencias.
+
+Para este ejercicio usaré tres clasificaciones: \textbf{funcional, calidad o restricción}; \textbf{producto o proceso}; y \textbf{sistema o software}. Un requisito funcional señala algo que la solución tiene que hacer. Uno de calidad indica qué tan bien debe funcionar. Una restricción fija una condición que debe respetarse. Esta es una explicación sencilla basada en los conceptos de Ingeniería de Requisitos de ISO/IEC/IEEE 29148:2018 y Pohl \cite{ISO29148,Pohl2025}. Para los requisitos de calidad se emplea ISO/IEC 25010:2023 \cite{ISO25010}.
+
+En la última clasificación, \emph{sistema} se usa cuando intervienen también equipos, servicios externos u operación del policlínico; \emph{software}, cuando la tarea corresponde principalmente al programa. En los requisitos de proceso esta separación es orientativa, porque se refieren al trabajo del proyecto y no al producto terminado.
+
+\section{Clasificación de los 20 enunciados}
+La siguiente tabla presenta la categoría principal de cada enunciado y una justificación breve. Para calidad se indican la característica y subcaracterística de ISO/IEC 25010:2023, sin atribuir a las normas valores que ellas no establecen \cite{ISO29148,ISO25010}.
+
+\begingroup
+\footnotesize
+\renewcommand{\arraystretch}{1.18}
+\setlength{\tabcolsep}{2pt}
+\begin{longtable}{@{}p{0.055\linewidth}p{0.09\linewidth}p{0.205\linewidth}p{0.09\linewidth}p{0.115\linewidth}p{0.34\linewidth}@{}}
+\caption{Clasificación de los enunciados del caso}\label{tab:clasificacion}\\
+\toprule
+\textbf{Código} & \textbf{Tipo} & \textbf{ISO/IEC 25010:2023} & \textbf{Producto / proceso} & \textbf{Sistema / software} & \textbf{Justificación} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Código} & \textbf{Tipo} & \textbf{ISO/IEC 25010:2023} & \textbf{Producto / proceso} & \textbf{Sistema / software} & \textbf{Justificación} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+E01 & Funcional & --- & Producto & Software & Permite al paciente reservar un horario disponible. \\
+E02 & Funcional & --- & Producto & Sistema & Indica una acción: enviar un SMS antes de una cita. \\
+E03 & Calidad & Eficiencia de desempeño / comportamiento temporal & Producto & Software & Pide rapidez, pero no dice cuánto tiempo es aceptable. \\
+E04 & Funcional & --- & Producto & Software & Permite que recepción registre la llegada del paciente. \\
+E05 & Restricción & --- & Producto & Software & Obliga a usar Java 21 y PostgreSQL. \\
+E06 & Funcional & --- & Producto & Software & Solicita ver la agenda y registrar consultas atendidas. \\
+E07 & Calidad & Seguridad / confidencialidad & Producto & Sistema & Busca evitar el acceso indebido a datos sensibles. \\
+E08 & Restricción & --- & Producto & Software & Fija Android 10 como versión mínima admitida. \\
+E09 & Funcional & --- & Producto & Software & Establece cómo registrar una cancelación tardía. \\
+E10 & Calidad & Capacidad de interacción / facilidad de aprendizaje & Producto & Software & Pide que los adultos mayores aprendan a utilizar la aplicación. \\
+E11 & Restricción & --- & Proceso & Sistema (proyecto) & Fija un plazo máximo para terminar el proyecto. \\
+E12 & Funcional & --- & Producto & Software & Define una acción automática después de la inactividad. \\
+E13 & Funcional & --- & Producto & Sistema & Requiere pantalla táctil, software e impresora. \\
+E14 & Calidad & Fiabilidad / disponibilidad & Producto & Sistema & Exige que el servicio esté operativo. \\
+E15 & Funcional & --- & Producto & Software & Permite generar un reporte de inasistencias. \\
+E16 & Restricción & --- & Proceso & Sistema (proyecto) & Establece cuándo debe revisarse cada incremento. \\
+E17 & Restricción & --- & Producto & Sistema & Exige cumplir una ley aplicable a los datos personales. \\
+E18 & Calidad & Compatibilidad / interoperabilidad & Producto & Sistema & Exige funcionar correctamente con el sistema de facturación existente. \\
+E19 & Calidad & Fiabilidad / recuperabilidad & Producto & Sistema & Pide recuperar el servicio y conservar las citas tras una falla. \\
+E20 & Restricción & --- & Proceso & Software (desarrollo) & Impone la revisión del código antes de integrarlo. \\
+\end{longtable}
+\endgroup
+
+\printbibliography[title={Referencias}]
+\end{document}
