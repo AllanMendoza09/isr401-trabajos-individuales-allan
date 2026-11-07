@@ -31,7 +31,7 @@ Ingeniería de Requerimientos (ISR-401), cuarto nivel}}
 \begin{document}
 \maketitle
 \begin{abstract}
-En esta primera parte del taller se clasifican veinte enunciados de una plataforma de citas médicas. Se distingue entre funciones, requisitos de calidad y restricciones, y se explica brevemente cada elección.
+En este taller se clasifican veinte enunciados para una plataforma de citas médicas. También se mejoran cinco requisitos poco claros, se revisan errores de redacción y se explican algunas clasificaciones que pueden causar dudas. Los valores usados en las mejoras son propuestas para el ejercicio, no resultados de pruebas.
 \end{abstract}
 \begin{IEEEkeywords}
 Ingeniería de requisitos, tipos de requisitos, calidad de software, ISO/IEC 25010.
@@ -85,6 +85,127 @@ E19 & Calidad & Fiabilidad / recuperabilidad & Producto & Sistema & Pide recuper
 E20 & Restricción & --- & Proceso & Software (desarrollo) & Impone la revisión del código antes de integrarlo. \\
 \end{longtable}
 \endgroup
+
+\section{Cinco requisitos vagos mejorados}
+Las expresiones \enquote{rápida}, \enquote{seguros}, \enquote{fácil de usar}, \enquote{siempre} y \enquote{sin problemas} pueden entenderse de distintas maneras. Por eso propongo los siguientes valores medibles. Son metas iniciales que tendrían que revisarse con el policlínico, no números definidos por las normas.
+
+\subsection{E03: tiempo de respuesta}
+\textbf{Original:} La aplicación debe ser rápida.
+
+\textbf{Problema:} No indica qué función debe ser rápida ni cuánto tiempo puede tardar.
+
+\textbf{Mejora:} La plataforma deberá mostrar los horarios disponibles en \textbf{3 segundos o menos en al menos el 95\,\% de las consultas}, durante una prueba con \textbf{300 usuarios conectados al mismo tiempo}.
+
+\textbf{Medición:} tiempo de respuesta, en segundos; umbral: percentil 95 menor o igual a 3 segundos. Se realizaría una prueba de 30 minutos con un catálogo de nueve especialidades y horarios cargados. El valor de 300 usuarios proviene del pico esperado los lunes a las 07:00. Como muchos pacientes usan Android de gama media o baja, conviene revisar también la respuesta desde esos dispositivos.
+
+\subsection{E07: protección de información}
+\textbf{Original:} Los datos de salud de los pacientes deben estar seguros.
+
+\textbf{Problema:} La palabra \enquote{seguros} no aclara qué se protegerá ni cómo se comprobará.
+
+\textbf{Mejora:} La plataforma deberá bloquear el \textbf{100\,\% de 60 solicitudes de prueba} realizadas por usuarios sin permiso para consultar los datos personales y las citas de otros pacientes.
+
+\textbf{Medición:} porcentaje de solicitudes bloqueadas; umbral: 60 de 60 (100\,\%). Se crearían cuentas de prueba con roles distintos y se intentaría consultar información ajena desde la web o la aplicación. La protección es necesaria porque el caso incluye información sensible y unos 12\,000 pacientes \cite{LOPDP2021}. Esta prueba comprueba el acceso no autorizado, pero no demuestra por sí sola toda la seguridad de la plataforma.
+
+\subsection{E10: uso por adultos mayores}
+\textbf{Original:} La plataforma debe ser fácil de usar para los pacientes adultos mayores.
+
+\textbf{Problema:} Lo que una persona considera fácil puede resultar complicado para otra.
+
+\textbf{Mejora:} Al menos \textbf{17 de 20 pacientes de 60 años o más} deberán completar una reserva en \textbf{5 minutos o menos}, utilizando un teléfono Android y sin ayuda durante la tarea.
+
+\textbf{Medición:} porcentaje de éxito y tiempo; umbrales: 85\,\% y 5 minutos. Se propone observar a 20 participantes en una prueba de uso y registrar los resultados. La edad se considera porque alrededor del 35\,\% de los pacientes supera los 60 años. No se afirma que esta prueba ya se realizó.
+
+\subsection{E14: disponibilidad}
+\textbf{Original:} La plataforma debe estar siempre disponible.
+
+\textbf{Problema:} \enquote{Siempre} no permite considerar las interrupciones ni establece cómo medirlas.
+
+\textbf{Mejora:} La plataforma deberá alcanzar al menos \textbf{99,5\,\% de disponibilidad al mes} durante el horario de atención de lunes a sábado, de 07:00 a 19:00.
+
+\textbf{Medición:} disponibilidad mensual, en porcentaje; umbral: 99,5\,\%. Un monitor comprobaría el acceso cada minuto durante el horario señalado. Se utilizaría la siguiente fórmula:
+\begin{equation}
+D=\frac{\text{minutos disponibles}}{\text{minutos programados}}\times100.
+\end{equation}
+Este horario corresponde al servicio presencial indicado en el caso. Si el policlínico desea reservas por internet las 24 horas, habría que ampliar la condición de medición.
+
+\subsection{E18: conexión con facturación}
+\textbf{Original:} La plataforma debe integrarse sin problemas con el sistema de facturación actual.
+
+\textbf{Problema:} No explica qué significa una integración correcta.
+
+\textbf{Mejora:} La plataforma deberá superar \textbf{40 de 40 casos de prueba de integración} acordados con el proveedor del sistema de facturación, utilizando sus servicios web documentados.
+
+\textbf{Medición:} porcentaje de casos aprobados; umbral: 100\,\%. Las pruebas compararían los datos enviados, las respuestas recibidas y el tratamiento de errores. Se proponen 40 casos como punto de partida; su contenido deberá acordarse con el proveedor. La nueva plataforma no emitirá facturas, porque esa función queda fuera del alcance.
+
+\begin{table}[H]
+\caption{Resumen de los cinco requisitos cuantificados}
+\label{tab:metricas}
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}p{0.08\linewidth}Yp{0.27\linewidth}@{}}
+\toprule
+\textbf{Código} & \textbf{Meta propuesta} & \textbf{Forma de comprobar} \\
+\midrule
+E03 & 95\,\% de consultas en 3 s o menos, con 300 usuarios & Prueba de carga \\
+E07 & 60 de 60 accesos indebidos bloqueados & Prueba con roles \\
+E10 & 17 de 20 reservas realizadas en máximo 5 min & Prueba de uso \\
+E14 & 99,5\,\% disponible al mes, en horario definido & Registro de monitoreo \\
+E18 & 40 de 40 pruebas de integración aprobadas & Pruebas con API \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Enunciados que necesitan corrección}
+Según los criterios generales de buena redacción de requisitos, conviene que cada enunciado sea claro, trate una idea principal y pueda comprobarse \cite{ISO29148}. Encontré estos problemas:
+
+\begin{table}[H]
+\caption{Problemas de redacción y mejoras propuestas}
+\label{tab:errores}
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}p{0.075\linewidth}p{0.23\linewidth}Y@{}}
+\toprule
+\textbf{Código} & \textbf{Propiedad debilitada} & \textbf{Mejora} \\
+\midrule
+E03 & Ambigüedad, no verificabilidad & Indicar tiempo máximo y carga de 300 usuarios (mejora E03). \\
+E07 & Ambigüedad, no verificabilidad & Definir una prueba de accesos no autorizados (mejora E07). \\
+E10 & Ambigüedad & Precisar tarea, participantes, porcentaje de éxito y tiempo (mejora E10). \\
+E14 & No verificabilidad & Establecer disponibilidad mensual y horario de medición (mejora E14). \\
+E18 & Ambigüedad & Definir pruebas que comprueben la comunicación con facturación (mejora E18). \\
+E06 & Singularidad & E06a: El médico podrá consultar su agenda diaria. E06b: El médico podrá marcar una cita como atendida. \\
+E13 & Singularidad & E13a: El quiosco identificará la cita con la cédula. E13b: El quiosco imprimirá el ticket del turno confirmado. \\
+E19 & Singularidad & E19a: Restablecer el servicio en menos de 30 min. E19b: No perder citas confirmadas tras la recuperación. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+También revisé la regla de E09: una cancelación hecha exactamente cuatro horas antes \textbf{no} es una cancelación con menos de cuatro horas. Para evitar confusiones, el sistema debería comparar las horas con el mismo reloj de referencia. En E01 también debe respetarse que no haya dos citas pendientes del mismo paciente en una especialidad. Las citas duran 20 minutos, excepto cardiología y traumatología, que duran 30 minutos.
+
+\section{Casos que pueden tener otra clasificación}
+Algunos enunciados admiten más de una interpretación. La tabla presenta mi elección principal y una alternativa razonable. Esto no representa la opinión de ningún compañero.
+
+\begin{table}[H]
+\caption{Clasificaciones discutibles}
+\label{tab:alternativas}
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}p{0.075\linewidth}p{0.22\linewidth}p{0.25\linewidth}Y@{}}
+\toprule
+\textbf{Código} & \textbf{Mi clasificación} & \textbf{Otra lectura} & \textbf{Por qué elijo la primera} \\
+\midrule
+E05 & Restricción de producto & Restricción del proceso de desarrollo & Se exige que el producto use Java y PostgreSQL. \\
+E08 & Restricción de software & Calidad de adaptabilidad & Indica una versión mínima concreta de Android. \\
+E09 & Funcional & Regla o restricción de negocio & El software debe registrar la cancelación como inasistencia. \\
+E12 & Funcional & Calidad de seguridad & Ordena cerrar la sesión tras un evento definido; la seguridad es su propósito. \\
+E13 & Funcional del sistema & Funcional del software & El enunciado incluye el equipo físico del quiosco. \\
+E16 & Restricción de proceso & Actividad de validación del proyecto & Fija una periodicidad y un responsable para la revisión. \\
+E17 & Restricción legal & Calidad de seguridad o regla de proceso & La ley afecta al tratamiento de datos y debe detallarse en varias obligaciones. \\
+E18 & Calidad de interoperabilidad & Funcional de integración & \enquote{Sin problemas} se refiere a cómo funciona la conexión; faltan funciones concretas. \\
+E19 & Calidad de recuperabilidad & Funcional de recuperación & Expresa un resultado de calidad tras una falla, aunque contiene dos condiciones. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Conclusión}
+Con esta actividad aprendí que no todos los enunciados son funciones: unos describen calidad y otros ponen condiciones al proyecto. También observé que palabras generales, como \enquote{rápido} o \enquote{seguro}, deben convertirse en criterios que se puedan comprobar. Las cifras propuestas sirven para practicar; antes de usarlas en un proyecto real habría que acordarlas con el policlínico.
 
 \printbibliography[title={Referencias}]
 \end{document}
