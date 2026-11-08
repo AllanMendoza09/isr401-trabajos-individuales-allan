@@ -1,0 +1,87 @@
+\documentclass[conference,onecolumn]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs,tabularx,array,longtable}
+\usepackage{float}
+\usepackage{url}
+\usepackage{cite}
+\usepackage[colorlinks=false,hidelinks]{hyperref}
+\usepackage{enumitem}
+\setlist{itemsep=1pt,topsep=2pt}
+\renewcommand{\arraystretch}{1.07}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\capturaTemu}[1]{\IfFileExists{#1}{\includegraphics[width=0.83\linewidth,height=3.0cm,keepaspectratio]{#1}}{\fbox{\parbox[c][1.65cm][c]{0.78\linewidth}{\centering\footnotesize Captura pendiente: \texttt{\detokenize{#1}}}}}}
+\title{IEEE 29148 y tipos de requisitos de Temu\\\large Actividad TA-IND-01}
+\author{\IEEEauthorblockN{Mendoza Palma Allan Jeremy}
+\IEEEauthorblockA{Universidad T\'ecnica Estatal de Quevedo\\
+Carrera de Software, 4.\textordmasculine\ nivel, Paralelo A\\
+Ingenier\'ia de Requerimientos (ISR-401)\\
+Docente: Gleiston Cicer\'on Guerrero Ulloa, PhD}}
+\hypersetup{pdftitle={TA-TAR-01 - IEEE 29148 y tipos de requisitos de Temu},pdfauthor={Mendoza Palma Allan Jeremy}}
+\begin{document}
+\maketitle
+\section{Sistema elegido: Temu}
+Temu es una plataforma de comercio electr\'onico disponible como sitio web y aplicaci\'on m\'ovil. En este an\'alisis se considera el recorrido de una persona compradora que busca art\'iculos, revisa opciones, prepara un carrito, realiza un pedido y consulta su seguimiento. Los usuarios considerados son compradores con cuenta, visitantes que exploran el cat\'alogo y servicios externos que intervienen en el pago o en la entrega. Se toma Temu como sistema conocido por el estudiante; los requisitos posteriores son \emph{propuestas de especificaci\'on}, no afirmaciones sobre el dise\~no interno, niveles reales de servicio o resultados de pruebas de la empresa.
+\section{Resumen anal\'itico de ISO/IEC/IEEE 29148:2018}
+\subsection{Construcci\'on de un requisito (5.2.4)}
+Un requisito no equivale a narrar una pantalla de Temu. Decir que \enquote{hay un carrito} sirve para describir una funci\'on observada, pero no especifica qu\'e respuesta se espera del sistema ni bajo qu\'e condici\'on se puede comprobar. La cl\'ausula 5.2.4 explica que un requisito bien formado expresa una necesidad atribuible al sistema, sus condiciones y, cuando procede, sus l\'imites. Por eso, la redacci\'on del presente trabajo usa el sujeto \enquote{el sistema Temu}, el verbo \enquote{deber\'a} y una acci\'on comprobable. Por ejemplo, agregar una variante disponible al carrito puede verificarse examinando la cantidad presentada tras la selecci\'on \cite[cl.~5.2.4]{iso29148}.
+
+La construcci\'on tambi\'en distingue el comportamiento exigido al sistema de las habilidades del comprador. Un enunciado como \enquote{el usuario debe comprender el pago} coloca la obligaci\'on en una persona; en cambio, especificar la informaci\'on que la interfaz mostrar\'a permite estudiar la responsabilidad del producto. La norma recomienda lenguaje activo y diferenciar mandatos de explicaciones o intenciones. Se debe evitar convertir la soluci\'on en una instrucci\'on de programaci\'on cuando solo interesa el resultado: para Temu importa qu\'e estado se muestra de un pedido, no qu\'e base de datos usa para obtenerlo \cite[cl.~5.2.4]{iso29148}.
+
+\subsection{Calidad individual (5.2.5)}
+La norma identifica nueve caracter\'isticas que ayudan a revisar cada enunciado. \emph{Necesario} significa que retirar el requisito dejar\'ia una necesidad sin cubrir; en Temu, conocer qu\'e producto se incorpor\'o al carrito afecta directamente la preparaci\'on de la compra. \emph{Apropiado} exige un nivel de detalle acorde con el sistema: ser\'ia improcedente imponer el nombre de una clase de software para describir una operaci\'on visible al comprador. \emph{No ambiguo} implica que dos lectores puedan interpretar del mismo modo qu\'e se pide; por eso \enquote{pago r\'apido} debe sustituirse por un umbral temporal cuando se formule un requisito de tiempo \cite[cl.~5.2.5]{iso29148}.
+
+\emph{Completo} exige condiciones suficientes para valorar la acci\'on sin adivinar datos ausentes. \emph{Singular} limita cada requisito a una capacidad o cualidad, aunque pueda incluir condiciones relacionadas. \emph{Factible} considera si la meta parece realizable dadas las restricciones t\'ecnicas y los recursos; una meta num\'erica de rendimiento no puede asumirse lograda por el simple hecho de escribirla. \emph{Verificable} significa que existe una prueba, inspecci\'on, demostraci\'on o an\'alisis capaz de decidir si se cumpli\'o. En Temu, medir el tiempo desde una b\'usqueda hasta los resultados ofrece un criterio m\'as preciso que valorar si una pantalla \enquote{se siente fluida} \cite[cl.~5.2.5]{iso29148}.
+
+\emph{Correcto} pide correspondencia con la necesidad real que origin\'o el requisito. Como el estudio no incluye entrevistas a responsables de Temu, esa correspondencia solo se plantea de manera provisional y debe validarse. Finalmente, \emph{conforme} significa emplear un esquema de identificaci\'on y redacci\'on uniforme. Utilizar RF, RI o RC y mantener el verbo obligatorio facilita comparar requisitos, aunque la uniformidad formal no demuestra por s\'i sola la correcci\'on funcional \cite[cl.~5.2.5]{iso29148}.
+
+\subsection{Calidad del conjunto (5.2.6)}
+Revisar enunciados aislados no garantiza una especificaci\'on coherente. La cl\'ausula 5.2.6 exige que el \emph{conjunto} sea completo, consistente, factible, comprensible y susceptible de validaci\'on. Para un escenario de comercio electr\'onico, resultar\'ia incompleto especificar la selecci\'on de productos sin tratar el carrito o el seguimiento de pedidos. Un conflicto aparecer\'ia si un requisito indicara que el total se expresa en USD y otro obligara a mostrarlo solo en otra moneda para la misma configuraci\'on. Tambi\'en es necesario que los criterios compartan unidades y vocabulario: \enquote{pedido}, \enquote{carrito} y \enquote{notificaci\'on de pago} representan objetos distintos \cite[cl.~5.2.6]{iso29148}.
+
+Un conjunto puede resultar comprensible y aun as\'i no responder a la necesidad original. Por eso, validar requiere volver a los escenarios de uso: un comprador quiere saber qu\'e eligi\'o, cu\'anto pagar\'a y cu\'al es el estado de su pedido. Se considera la perspectiva de Pohl sobre relacionar necesidades con especificaci\'on y gesti\'on de cambios, y la distinci\'on entre actividades de requisitos recogida en SWEBOK \cite{pohl2025,swebok2024}. En este informe no se presume una validaci\'on de campo.
+
+\subsection{Lenguaje controlado (5.2.7)}
+La cl\'ausula 5.2.7 pide describir \emph{qu\'e} debe ocurrir y limitar expresiones abiertas. Entre los casos problem\'aticos est\'an superlativos, adjetivos subjetivos, pronombres sin referente, adverbios sin umbral, combinaciones l\'ogicas ambiguas, excepciones como \enquote{si es posible}, comparaciones sin base y referencias incompletas. As\'i, \enquote{mostrar los productos m\'as relevantes y de forma f\'acil} mezcla una valoraci\'on sin definici\'on con dos objetivos. Sustituirlo por una regla de b\'usqueda con datos de prueba permite una decisi\'on reproducible. Tampoco se debe confundir el uso de una meta del 100~\% sobre un conjunto \emph{delimitado de casos} con palabras absolutas no acotadas como \enquote{siempre} \cite[cl.~5.2.7]{iso29148}.
+
+\subsection{Atributos y trazabilidad (5.2.8)}
+La redacci\'on de un requisito es solo una parte de su administraci\'on. La cl\'ausula 5.2.8 contempla atributos para identificarlo y mantener su contexto, como identificador, versi\'on, propietario, prioridad, riesgo, justificaci\'on, dificultad y tipo. En una revisi\'on de Temu, una clave estable como RC-01 permite vincular una necesidad de confidencialidad con una pantalla de pedidos y con un caso de prueba. El atributo \emph{tipo} facilita separar funciones de restricciones y de cualidades del producto. Los atributos no deben convertirse en frases obligatorias innecesarias dentro del enunciado: una justificaci\'on de por qu\'e importa proteger los pedidos pertenece al registro del requisito, mientras el comportamiento esperado permanece en el requisito mismo \cite[cl.~5.2.8]{iso29148}.
+
+\subsection{Aplicaci\'on de estos criterios al caso}
+El recorrido de compra ofrece una manera de comprobar las diferencias entre tipos de exigencia. La b\'usqueda y la incorporaci\'on de un art\'iculo al carrito son funciones: se puede preparar un cat\'alogo de prueba y observar el estado resultante. El intercambio de un mensaje con el proveedor de pagos pertenece a una interfaz externa y no se puede validar con una captura de pantalla solamente. Si se exige una respuesta en tres segundos, el tiempo no cambia la funci\'on de buscar, sino que delimita su desempe\~no bajo una carga definida. Separar estos aspectos evita reunir comportamientos distintos en una misma frase \cite[cl.~5.2.8.3]{iso29148}.
+
+En los requisitos de calidad, el criterio de aceptaci\'on debe apuntar a una propiedad observable y a una condici\'on de ensayo. Por ejemplo, la confidencialidad puede estudiarse con cuentas de prueba que intenten consultar pedidos de otra cuenta, mientras la disponibilidad necesita observaciones distribuidas en un periodo de tiempo. Ninguno de los dos resultados puede concluirse al ver el icono de un candado o el historial en una captura. Las imágenes propias sirven para ubicar la función y justificar por qu\'e interesa especificarla; no reemplazan registros de pruebas ni revelan la arquitectura real de Temu \cite[cl.~5.2.5]{iso29148}.
+
+Tambi\'en se debe reconocer el alcance del trabajo individual. Una persona que utiliza Temu puede proponer requisitos razonables para la experiencia de compra, pero no conoce necesariamente los acuerdos con transportistas, la capacidad de servidores ni los procesos internos de conciliaci\'on. Por ello, las metas se documentan como propuestas que necesitar\'ian negociaci\'on, y las decisiones no verificadas se mantienen identificadas. Ese l\'imite preserva la diferencia entre elaborar una especificaci\'on de estudio y afirmar hechos comprobados sobre un servicio comercial \cite{pohl2025}.
+
+En consecuencia, la especificaci\'on propuesta distingue tres niveles: observaciones generales de una plataforma de compra, necesidades razonables para el escenario seleccionado y metas medibles que tendr\'ian que negociarse y comprobarse. ISO/IEC 25010:2023 aporta nombres de caracter\'isticas y subcaracter\'isticas para clasificar las metas de calidad del \emph{producto}; no convierte las cifras propuestas en datos operativos de Temu \cite{iso25010}.
+\section{Glosario de la cl\'ausula 3}
+\noindent\footnotesize Los ejemplos son situaciones propuestas para Temu; no se presentan como resultados de entrevistas. \cite[cl.~3]{iso29148}\normalsize
+\begingroup\small
+\begin{longtable}{@{}p{0.205\linewidth}p{0.322\linewidth}p{0.405\linewidth}@{}}
+\caption{Diez t\'erminos de la cl\'ausula 3 aplicados a Temu.}\label{tab:glosario}\\
+\toprule \textbf{T\'ermino y cl.} & \textbf{Definici\'on parafraseada} & \textbf{Ejemplo propuesto en Temu}\\\midrule
+\endfirsthead
+\toprule \textbf{T\'ermino y cl.} & \textbf{Definici\'on parafraseada} & \textbf{Ejemplo propuesto en Temu}\\\midrule
+\endhead
+Requisito (3.1.19) & Expresión de una necesidad, junto con las condiciones y restricciones que le corresponden. & El estado de un pedido debe estar disponible para su titular.\\
+Stakeholder (interesado) (3.1.28) & Persona u organización con interés legítimo en el sistema. & Un comprador necesita consultar las compras de su cuenta.\\
+Condición (3.1.6) & Circunstancia medible que determina cuándo aplica una exigencia. & La búsqueda se evalúa con 100 usuarios concurrentes.\\
+Restricción (3.1.7) & Límite impuesto a la solución o a su desarrollo. & Los importes de un pedido de Ecuador se presentarían en USD.\\
+Atributo (3.1.2) & Propiedad distinguible de un elemento, expresada de forma cualitativa o cuantitativa. & RC-01 tiene un nivel de prioridad asignado.\\
+Sistema de interés (3.1.32) & Sistema cuyo ciclo de vida se toma como objeto de estudio. & La versión web de Temu considerada para hacer el estudio.\\
+Elicitación de requisitos (3.1.20) & Actividad sistemática para descubrir necesidades de usuarios. & Revisar qué información necesita un comprador antes de pagar.\\
+Gestión de requisitos (3.1.22) & Seguimiento y mantenimiento de requisitos durante el ciclo de vida. & Registrar una modificación del criterio de tiempo de búsqueda.\\
+Trazabilidad (3.1.23) & Relación documentada entre una necesidad y sus requisitos derivados. & Asociar RC-01 con la necesidad de confidencialidad del comprador.\\
+Validación de requisitos (3.1.25) & Revisión de si las exigencias describen el sistema que se necesita. & Consultar con compradores si el estado de entrega propuesto responde a su necesidad.\\
+\bottomrule
+\end{longtable}
+\endgroup
+\bibliographystyle{IEEEtran}
+\bibliography{TA-TAR-01}
+\end{document}
