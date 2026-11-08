@@ -1,7 +1,7 @@
 # TA-IND-01 — IEEE 29148 y tipos de requisitos de Temu
 
 **Universidad:** Universidad Técnica Estatal de Quevedo (UTEQ)  
-**Carrera:** Software · 4.º nivel · Paralelo A  
+**Carrera:** Software · 4.º nivel · Paralelo B  
 **Asignatura:** Ingeniería de Requerimientos (ISR-401)  
 **Docente:** Gleiston Cicerón Guerrero Ulloa, PhD  
 **Estudiante:** Mendoza Palma Allan Jeremy  
@@ -14,21 +14,21 @@ Aplicar los criterios de construcción y calidad de requisitos de **ISO/IEC/IEEE
 
 ## Estado de esta versión
 
-**Commit 1 — Fundamentación y análisis inicial**
+**Commit 2 — Especificación y clasificación de requisitos**
 
-Se establece la base académica del informe: contexto de Temu, lectura analítica de ISO/IEC/IEEE 29148:2018 y glosario aplicado a compras en línea.
+Se conserva íntegro el análisis del primer avance y se añaden los requisitos propuestos para Temu con su clasificación y criterios de aceptación.
 
 ### Contenido incorporado en este commit
 
-- Descripción de Temu: propósito, usuarios y recorrido del comprador.
-- Resumen analítico de las cláusulas 5.2.4 a 5.2.8 de ISO/IEC/IEEE 29148:2018.
-- Glosario de diez términos de ingeniería de requisitos, ejemplificados en Temu.
-- Preámbulo IEEEtran en una columna y cuatro fuentes en el archivo bibliográfico.
-- Carpeta `figuras/` reservada para las evidencias de la etapa final.
+- Todo el contenido del commit 1, sin eliminar el resumen ni el glosario.
+- Quince requisitos organizados por categorías: funcionales, interfaz, desempeño, calidad y otras restricciones o necesidades aplicables.
+- Cinco requisitos de calidad con característica, subcaracterística, métrica y umbral propuesto según ISO/IEC 25010:2023.
+- Tabla consolidada con identificadores, enunciados, tipos y criterios de aceptación.
+- Cuatro figuras con referencias cruzadas: todavía se muestran marcadores en lugar de capturas reales.
 
-**Situación de las evidencias:** En esta versión todavía no aparecen los 15 requisitos ni las capturas. La carpeta `figuras/` solo contiene `.gitkeep`.
+**Situación de las evidencias:** Los cuadros «Captura pendiente» son intencionales en este avance; no representan imágenes tomadas ni verificaciones ejecutadas.
 
-**Estado del documento:** El PDF de este avance es preliminar: no constituye la entrega completa.
+**Estado del documento:** El PDF del segundo avance es un borrador acumulativo, no una evidencia de funcionamiento medido en Temu.
 
 ## Organización del proyecto
 
@@ -87,6 +87,6 @@ Las citas del texto se resuelven desde `TA-TAR-01.bib`. Antes de entregar, compr
 
 ## Continuidad del trabajo
 
-El siguiente avance agregará los quince requisitos, su clasificación y los espacios de evidencia.
+El tercer avance completará la autoevaluación, las correcciones y las secciones de cierre; las capturas reales se insertan cuando estén disponibles.
 
 Las fechas de los commits deben corresponder a los días de trabajo reales. Cada versión de este proyecto es acumulativa: no reemplaza el contenido anterior por un documento parcial.

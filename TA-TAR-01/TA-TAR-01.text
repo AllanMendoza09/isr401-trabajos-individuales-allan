@@ -20,7 +20,7 @@
 \title{IEEE 29148 y tipos de requisitos de Temu\\\large Actividad TA-IND-01}
 \author{\IEEEauthorblockN{Mendoza Palma Allan Jeremy}
 \IEEEauthorblockA{Universidad T\'ecnica Estatal de Quevedo\\
-Carrera de Software, 4.\textordmasculine\ nivel, Paralelo A\\
+Carrera de Software, 4.\textordmasculine\ nivel, Paralelo B\\
 Ingenier\'ia de Requerimientos (ISR-401)\\
 Docente: Gleiston Cicer\'on Guerrero Ulloa, PhD}}
 \hypersetup{pdftitle={TA-TAR-01 - IEEE 29148 y tipos de requisitos de Temu},pdfauthor={Mendoza Palma Allan Jeremy}}
@@ -82,6 +82,69 @@ Validación de requisitos (3.1.25) & Revisión de si las exigencias describen el
 \bottomrule
 \end{longtable}
 \endgroup
+\section{Requisitos propuestos para Temu}
+Los 15 enunciados siguientes son propuestas de comportamiento futuro y \emph{no} resultados medidos en la plataforma. Para verificarlos se requerir\'ia un entorno de prueba, conjuntos de datos preparados y autorizaci\'on para evaluar interfaces externas. Las Figuras~\ref{fig:catalogo} a~\ref{fig:cuenta} se reservan para capturas propias del estudiante.
+\begin{quote}\small
+\noindent\textbf{RF-01.} El sistema Temu deber\'a mostrar los productos cuyo nombre contenga la cadena introducida cuando el comprador ejecute una b\'usqueda en el cat\'alogo. \emph{Referencia visual: Fig.~\ref{fig:catalogo}.}\par
+\noindent\textbf{RF-02.} El sistema Temu deber\'a agregar una unidad de la variante seleccionada al carrito cuando el comprador confirme la opci\'on disponible. \emph{Referencia visual: Fig.~\ref{fig:carrito}.}\par
+\noindent\textbf{RF-03.} El sistema Temu deber\'a mostrar el listado de pedidos asociados a la cuenta cuando una persona autenticada abra el historial de compras. \emph{Referencia visual: Fig.~\ref{fig:seguimiento}.}\par
+\noindent\textbf{RF-04.} El sistema Temu deber\'a retirar del carrito el art\'iculo seleccionado cuando el comprador confirme su eliminaci\'on. \emph{Referencia visual: Fig.~\ref{fig:carrito}.}\par
+\noindent\textbf{RI-01.} El sistema Temu deber\'a enviar un mensaje con identificador del pedido y monto total en USD al servicio de pagos configurado cuando el comprador confirme el pago. \emph{Referencia visual: Fig.~\ref{fig:carrito}.}\par
+\noindent\textbf{RI-02.} El sistema Temu deber\'a registrar el estado de entrega asociado al identificador de pedido cuando reciba un evento v\'alido del servicio de seguimiento configurado. \emph{Referencia visual: Fig.~\ref{fig:seguimiento}.}\par
+\noindent\textbf{RD-01.} El sistema Temu deber\'a presentar resultados de b\'usqueda en un tiempo de hasta 3 segundos para al menos el 95~\% de las solicitudes cuando operen 100 usuarios concurrentes durante 15 minutos. \emph{Referencia visual: Fig.~\ref{fig:catalogo}.}\par
+\noindent\textbf{RC-01.} El sistema Temu deber\'a rechazar el acceso a los detalles de un pedido ajeno cuando la solicitud se realice desde una cuenta sin autorizaci\'on sobre ese pedido, en 100 de 100 casos de prueba. \emph{Referencia visual: Fig.~\ref{fig:cuenta}.}\par
+\noindent\textbf{RC-02.} El sistema Temu deber\'a mantener una disponibilidad mensual de al menos 99,5~\% en el servicio de consulta de pedidos durante un periodo de 30 d\'ias. \emph{Referencia visual: Fig.~\ref{fig:seguimiento}.}\par
+\noindent\textbf{RC-03.} El sistema Temu deber\'a interpretar correctamente al menos el 99~\% de 200 notificaciones v\'alidas del servicio de pagos configurado, cuando se ejecuten pruebas de integraci\'on con respuestas simuladas. \emph{Referencia visual: Fig.~\ref{fig:carrito}.}\par
+\noindent\textbf{RC-04.} El sistema Temu deber\'a bloquear el env\'io del pedido cuando falte el campo obligatorio de ciudad de entrega, en 20 de 20 intentos de prueba. \emph{Referencia visual: Fig.~\ref{fig:carrito}.}\par
+\noindent\textbf{RC-05.} El sistema Temu deber\'a calcular el subtotal del carrito con un error absoluto m\'aximo de USD~0,01 respecto de la suma de los importes de sus art\'iculos cuando se eval\'uen 100 carritos de prueba. \emph{Referencia visual: Fig.~\ref{fig:carrito}.}\par
+\noindent\textbf{RU-01.} El sistema Temu deber\'a permitir que al menos 9 de 10 compradores de una prueba supervisada localicen el estado de un pedido en un m\'aximo de 90 segundos, sin asistencia externa, partiendo de la pantalla inicial de una sesi\'on autenticada. \emph{Referencia visual: Fig.~\ref{fig:seguimiento}.}\par
+\noindent\textbf{RH-01.} El sistema Temu deber\'a presentar el control principal de confirmaci\'on de compra con un área t\'actil m\'inima de 44 por 44 p\'ixeles CSS cuando se muestre en una ventana m\'ovil de 390 por 844 p\'ixeles CSS. \emph{Referencia visual: Fig.~\ref{fig:carrito}.}\par
+\noindent\textbf{RR-01.} El sistema Temu deber\'a expresar los importes del pedido en d\'olares estadounidenses (USD) cuando el pa\'is de entrega seleccionado sea Ecuador. \emph{Referencia visual: Fig.~\ref{fig:carrito}.}\par
+\end{quote}
+\subsection{Capturas de referencia de la interfaz}
+\begin{figure}[H]\centering
+\capturaTemu{figuras/captura1.png}
+\caption{Cat\'alogo o b\'usqueda de productos en Temu.}\label{fig:catalogo}
+\end{figure}
+\begin{figure}[H]\centering
+\capturaTemu{figuras/captura2.png}
+\caption{Carrito y proceso de pago en Temu.}\label{fig:carrito}
+\end{figure}
+\begin{figure}[H]\centering
+\capturaTemu{figuras/captura3.png}
+\caption{Consulta de seguimiento de pedidos en Temu.}\label{fig:seguimiento}
+\end{figure}
+\begin{figure}[H]\centering
+\capturaTemu{figuras/captura4.png}
+\caption{Opciones de cuenta o privacidad de Temu.}\label{fig:cuenta}
+\end{figure}
+\section{Clasificaci\'on, medici\'on y aceptaci\'on}
+La Tabla~\ref{tab:clasif} contiene el enunciado completo, tipo y prueba prevista. Para los requisitos de calidad se indican caracter\'istica y subcaracter\'istica del modelo de \emph{producto} ISO/IEC 25010:2023 \cite{iso25010}. RU-01 es un objetivo propuesto de calidad en uso, no un resultado de participantes reales; su evaluaci\'on demandar\'ia una sesi\'on futura y consentimiento. Las metas num\'ericas son supuestos de dise\~no.
+\begingroup\fontsize{7.0}{8.1}\selectfont
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}p{0.063\linewidth}p{0.368\linewidth}p{0.095\linewidth}p{0.185\linewidth}p{0.110\linewidth}p{0.115\linewidth}@{}}
+\caption{Clasificaci\'on propuesta de los 15 requisitos.}\label{tab:clasif}\\
+\toprule \textbf{ID} & \textbf{Enunciado} & \textbf{Tipo} & \textbf{ISO 25010:2023} & \textbf{M\'etrica} & \textbf{Aceptaci\'on}\\\midrule
+\endfirsthead
+\toprule \textbf{ID} & \textbf{Enunciado} & \textbf{Tipo} & \textbf{ISO 25010:2023} & \textbf{M\'etrica} & \textbf{Aceptaci\'on}\\\midrule
+\endhead
+\textbf{RF-01} & El sistema Temu deber\'a mostrar los productos cuyo nombre contenga la cadena introducida cuando el comprador ejecute una b\'usqueda en el cat\'alogo. & Funcional & --- & Coincidencias correctas & 12 de 12 resultados del conjunto de prueba.\\
+\textbf{RF-02} & El sistema Temu deber\'a agregar una unidad de la variante seleccionada al carrito cuando el comprador confirme la opci\'on disponible. & Funcional & --- & Unidades agregadas & 1 unidad en cada uno de 10 casos.\\
+\textbf{RF-03} & El sistema Temu deber\'a mostrar el listado de pedidos asociados a la cuenta cuando una persona autenticada abra el historial de compras. & Funcional & --- & Pedidos visibles & 5 de 5 pedidos del conjunto de prueba.\\
+\textbf{RF-04} & El sistema Temu deber\'a retirar del carrito el art\'iculo seleccionado cuando el comprador confirme su eliminaci\'on. & Funcional & --- & Artículos eliminados & 10 de 10 casos de eliminación.\\
+\textbf{RI-01} & El sistema Temu deber\'a enviar un mensaje con identificador del pedido y monto total en USD al servicio de pagos configurado cuando el comprador confirme el pago. & Interfaz externa & --- & Mensajes conformes & 20 de 20 mensajes con ambos campos.\\
+\textbf{RI-02} & El sistema Temu deber\'a registrar el estado de entrega asociado al identificador de pedido cuando reciba un evento v\'alido del servicio de seguimiento configurado. & Interfaz externa & --- & Eventos registrados & 20 de 20 eventos válidos.\\
+\textbf{RD-01} & El sistema Temu deber\'a presentar resultados de b\'usqueda en un tiempo de hasta 3 segundos para al menos el 95~\% de las solicitudes cuando operen 100 usuarios concurrentes durante 15 minutos. & Desempe\~no & Eficiencia de desempe\~no / comportamiento temporal & P95 de respuesta & P95 $\leq$ 3 s en prueba de 15 min.\\
+\textbf{RC-01} & El sistema Temu deber\'a rechazar el acceso a los detalles de un pedido ajeno cuando la solicitud se realice desde una cuenta sin autorizaci\'on sobre ese pedido, en 100 de 100 casos de prueba. & Calidad & Seguridad / confidencialidad & Accesos rechazados & 100 de 100 intentos rechazados.\\
+\textbf{RC-02} & El sistema Temu deber\'a mantener una disponibilidad mensual de al menos 99,5~\% en el servicio de consulta de pedidos durante un periodo de 30 d\'ias. & Calidad & Fiabilidad / disponibilidad & Minutos accesibles & Disponibilidad $\geq$ 99,5~\%.\\
+\textbf{RC-03} & El sistema Temu deber\'a interpretar correctamente al menos el 99~\% de 200 notificaciones v\'alidas del servicio de pagos configurado, cuando se ejecuten pruebas de integraci\'on con respuestas simuladas. & Calidad & Compatibilidad / interoperabilidad & Notificaciones interpretadas & Al menos 198 de 200.\\
+\textbf{RC-04} & El sistema Temu deber\'a bloquear el env\'io del pedido cuando falte el campo obligatorio de ciudad de entrega, en 20 de 20 intentos de prueba. & Calidad & Capacidad de interacción / protección frente a errores de usuario & Envíos bloqueados & 20 de 20 intentos.\\
+\textbf{RC-05} & El sistema Temu deber\'a calcular el subtotal del carrito con un error absoluto m\'aximo de USD~0,01 respecto de la suma de los importes de sus art\'iculos cuando se eval\'uen 100 carritos de prueba. & Calidad & Adecuación funcional / corrección funcional & Error absoluto & 100 casos con error $\leq$ USD 0,01.\\
+\textbf{RU-01} & El sistema Temu deber\'a permitir que al menos 9 de 10 compradores de una prueba supervisada localicen el estado de un pedido en un m\'aximo de 90 segundos, sin asistencia externa, partiendo de la pantalla inicial de una sesi\'on autenticada. & Calidad en uso & No aplica (ISO/IEC 25019) & Tareas completadas & Al menos 9 de 10 en 90 s.\\
+\textbf{RH-01} & El sistema Temu deber\'a presentar el control principal de confirmaci\'on de compra con un área t\'actil m\'inima de 44 por 44 p\'ixeles CSS cuando se muestre en una ventana m\'ovil de 390 por 844 p\'ixeles CSS. & Factores humanos & Capacidad de interacción / asistencia al usuario & Tama\~no del control & Ancho $\geq$ 44 px y alto $\geq$ 44 px.\\
+\textbf{RR-01} & El sistema Temu deber\'a expresar los importes del pedido en d\'olares estadounidenses (USD) cuando el pa\'is de entrega seleccionado sea Ecuador. & Restricción & --- & Moneda mostrada & 10 de 10 pedidos de prueba en USD.\\
+\bottomrule
+\end{longtable}\endgroup
 \bibliographystyle{IEEEtran}
 \bibliography{TA-TAR-01}
 \end{document}
