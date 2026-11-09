@@ -145,6 +145,52 @@ La Tabla~\ref{tab:clasif} contiene el enunciado completo, tipo y prueba prevista
 \textbf{RR-01} & El sistema Temu deber\'a expresar los importes del pedido en d\'olares estadounidenses (USD) cuando el pa\'is de entrega seleccionado sea Ecuador. & Restricción & --- & Moneda mostrada & 10 de 10 pedidos de prueba en USD.\\
 \bottomrule
 \end{longtable}\endgroup
+\section{Autoevaluaci\'on de los requisitos}
+La Tabla~\ref{tab:eval} usa los nueve criterios de la cl\'ausula 5.2.5: necesario (N), apropiado (A), no ambiguo (U), completo (C), singular (S), factible (F), verificable (V), correcto (R) y conforme (Co). \textbf{D} indica revisi\'on documental favorable, \textbf{P} verificaci\'on pendiente con actores o entorno real. No equivale a certificar que Temu cumpla las metas. Los t\'erminos de 5.2.7 tambi\'en se revisaron en la redacci\'on final \cite[cl.~5.2.5--5.2.7]{iso29148}.
+\begin{table}[H]\caption{Autoevaluaci\'on documental de 15 requisitos.}\label{tab:eval}\centering
+\begingroup\footnotesize
+\begin{tabular}{@{}l*{9}{c}@{}}\toprule
+\textbf{ID}&\textbf{N}&\textbf{A}&\textbf{U}&\textbf{C}&\textbf{S}&\textbf{F}&\textbf{V}&\textbf{R}&\textbf{Co}\\\midrule
+RF-01 & P & D & D & D & D & D & D & P & D\\
+RF-02 & P & D & D & D & D & D & D & P & D\\
+RF-03 & P & D & D & D & D & D & D & P & D\\
+RF-04 & P & D & D & D & D & D & D & P & D\\
+RI-01 & P & D & D & D & D & D & D & P & D\\
+RI-02 & P & D & D & D & D & D & D & P & D\\
+RD-01 & P & D & D & D & D & P & D & P & D\\
+RC-01 & P & D & D & D & D & D & D & P & D\\
+RC-02 & P & D & D & D & D & P & D & P & D\\
+RC-03 & P & D & D & D & D & P & D & P & D\\
+RC-04 & P & D & D & D & D & D & D & P & D\\
+RC-05 & P & D & D & D & D & D & D & P & D\\
+RU-01 & P & D & D & D & D & P & D & P & D\\
+RH-01 & P & D & D & D & D & D & D & P & D\\
+RR-01 & P & D & D & D & D & D & D & P & D\\
+\bottomrule\end{tabular}\endgroup\end{table}
+
+La Tabla~\ref{tab:ajustes} documenta ejemplos de \emph{versiones iniciales defectuosas} corregidas para la propuesta. En los cinco casos se sustituyen juicios subjetivos, alcances abiertos o frases con m\'ultiples interpretaciones por una condici\'on evaluable.
+\begingroup\small
+\begin{longtable}{@{}p{0.085\linewidth}p{0.270\linewidth}p{0.450\linewidth}p{0.125\linewidth}@{}}
+\caption{Cambios entre versiones iniciales y definitivas.}\label{tab:ajustes}\\
+\toprule\textbf{ID}&\textbf{Versi\'on inicial (defectuosa)}&\textbf{Versi\'on corregida}&\textbf{Problema resuelto}\\\midrule
+\endfirsthead
+\toprule\textbf{ID}&\textbf{Versi\'on inicial (defectuosa)}&\textbf{Versi\'on corregida}&\textbf{Problema resuelto}\\\midrule\endhead
+RF-01 & La aplicaci\'on deber\'a buscar productos r\'apidamente. & El sistema Temu deber\'a mostrar los productos cuyo nombre contenga la cadena introducida cuando el comprador ejecute una b\'usqueda en el cat\'alogo. & Velocidad sin referencia y objeto impreciso.\\
+RI-01 & El sistema deber\'a conectarse con cualquier pasarela disponible. & El sistema Temu deber\'a enviar un mensaje con identificador del pedido y monto total en USD al servicio de pagos configurado cuando el comprador confirme el pago. & Interfaz no delimitada.\\
+RD-01 & El sistema deber\'a responder casi de inmediato a las b\'usquedas. & El sistema Temu deber\'a presentar resultados de b\'usqueda en un tiempo de hasta 3 segundos para al menos el 95~\% de las solicitudes cuando operen 100 usuarios concurrentes durante 15 minutos. & Adverbio sin umbral.\\
+RC-01 & El sistema deber\'a proteger completamente los datos de compras. & El sistema Temu deber\'a rechazar el acceso a los detalles de un pedido ajeno cuando la solicitud se realice desde una cuenta sin autorizaci\'on sobre ese pedido, en 100 de 100 casos de prueba. & Alcance absoluto no verificable.\\
+RH-01 & El sistema deber\'a mostrar botones c\'omodos para todos. & El sistema Temu deber\'a presentar el control principal de confirmaci\'on de compra con un área t\'actil m\'inima de 44 por 44 p\'ixeles CSS cuando se muestre en una ventana m\'ovil de 390 por 844 p\'ixeles CSS. & Valoración subjetiva.\\
+\bottomrule\end{longtable}\endgroup
+La comprobaci\'on definitiva de necesidad, correcci\'on y factibilidad exige observaci\'on de la versi\'on concreta de Temu, acceso a un entorno autorizado para ejecutar pruebas y, cuando corresponda, confirmaci\'on de interesados. No se ha supuesto que esos pasos ya ocurrieron.
+\section{Reflexión sobre la formulación de requisitos}
+La formulación de requisitos de \emph{calidad} presenta el mayor desafío técnico en el caso de Temu. Una función puede describirse por la acción que realiza: buscar productos o retirar un artículo del carrito. En cambio, afirmar que una función funciona bien no basta para especificar su calidad. Es necesario definir qué propiedad se medirá, en qué condiciones y con qué valor se aceptará el resultado. El problema se aprecia en la versión inicial de RC-01, que solicitaba proteger completamente los datos. Ese enunciado no definía el alcance de la protección ni indicaba un procedimiento para comprobarla. La versión corregida se centra en el rechazo de accesos no autorizados a pedidos ajenos y delimita cien casos de prueba.
+
+Otro punto que exige atención es la diferencia entre \emph{proponer} un umbral y \emph{demostrar} que Temu lo cumple. La disponibilidad de RC-02 necesitaría mediciones durante treinta días; la interoperabilidad de RC-03 requeriría una interfaz de prueba autorizada. Ninguno de esos resultados puede obtenerse únicamente con una captura del carrito o del seguimiento. Por eso, los porcentajes de la especificación se presentan como metas y no como estadísticas reales de la plataforma.
+
+La clasificación en ISO/IEC 25010:2023 también obliga a escoger con cuidado entre seguridad, fiabilidad, compatibilidad, capacidad de interacción y adecuación funcional. Para evitar mezclar propiedades distintas, cada RC conserva un solo objetivo de calidad. Este ejercicio muestra que la dificultad principal no consiste en escribir una oración con \enquote{deberá}, sino en construir una condición verificable sin atribuir al sistema capacidades internas que no han sido comprobadas. En una continuación del análisis sería necesario validar las metas con responsables del producto y ejecutar las pruebas antes de dar por aceptados los requisitos.
+
+\section*{Declaración de uso de inteligencia artificial}
+Se utilizó \textbf{ChatGPT, modelo GPT-6 (OpenAI)}, como apoyo para organizar el informe, elaborar una propuesta de redacción, revisar la singularidad y cuantificación de los requisitos, contrastar información bibliográfica y preparar el código LaTeX. 
 \bibliographystyle{IEEEtran}
 \bibliography{TA-TAR-01}
 \end{document}

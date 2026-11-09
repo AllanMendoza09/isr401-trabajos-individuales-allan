@@ -14,21 +14,22 @@ Aplicar los criterios de construcción y calidad de requisitos de **ISO/IEC/IEEE
 
 ## Estado de esta versión
 
-**Commit 2 — Especificación y clasificación de requisitos**
+**Commit 3 — Autoevaluación y documento de entrega**
 
-Se conserva íntegro el análisis del primer avance y se añaden los requisitos propuestos para Temu con su clasificación y criterios de aceptación.
+Se conserva el informe de los dos avances anteriores y se agregan las correcciones de redacción, el análisis de dificultades y la declaración de apoyo de IA.
 
 ### Contenido incorporado en este commit
 
-- Todo el contenido del commit 1, sin eliminar el resumen ni el glosario.
-- Quince requisitos organizados por categorías: funcionales, interfaz, desempeño, calidad y otras restricciones o necesidades aplicables.
-- Cinco requisitos de calidad con característica, subcaracterística, métrica y umbral propuesto según ISO/IEC 25010:2023.
-- Tabla consolidada con identificadores, enunciados, tipos y criterios de aceptación.
-- Cuatro figuras con referencias cruzadas: todavía se muestran marcadores en lugar de capturas reales.
+- Todo el contenido de los commits 1 y 2.
+- Autoevaluación de los quince requisitos con referencia a las nueve propiedades de calidad y a las reglas de lenguaje.
+- Tabla comparativa de versiones iniciales defectuosas y enunciados corregidos.
+- Reflexión sobre la dificultad de cuantificar requisitos de calidad, redactada como borrador revisable.
+- Declaración de asistencia de IA y referencias en formato IEEE.
+- Espacios automáticos para cuatro capturas propias de Temu; se sustituyen al añadir los archivos PNG.
 
-**Situación de las evidencias:** Los cuadros «Captura pendiente» son intencionales en este avance; no representan imágenes tomadas ni verificaciones ejecutadas.
+**Situación de las evidencias:** Esta versión compila sin las imágenes, pero no debe darse por terminada hasta incorporar capturas auténticas y revisar personalmente la reflexión, el uso declarado de IA y las cláusulas normativas.
 
-**Estado del documento:** El PDF del segundo avance es un borrador acumulativo, no una evidencia de funcionamiento medido en Temu.
+**Estado del documento:** El PDF final se debe regenerar después de colocar las cuatro capturas y verificar que no aparezca «Captura pendiente».
 
 ## Organización del proyecto
 
@@ -45,7 +46,6 @@ ISR401-MendozaAllan/
 
 El archivo **`TA-TAR-01.text`** contiene código LaTeX; para procesarlo directamente con PDFLaTeX se conserva una copia idéntica llamada **`TA-TAR-01.tex`**. El archivo de salida se denomina **`TA-TAR-01.pdf`**.
 
-> **Nota de nomenclatura:** la guía de TA-IND-01 menciona también `main.tex` y `main.pdf` como nombres esperados en el repositorio. Aquí se utilizan los nombres `TA-TAR-01.*` solicitados para el trabajo; antes de la entrega conviene comprobar si el docente exige adicionalmente aquellos alias. La carpeta del repositorio se mantiene como `TA-IND-01/`, conforme a la guía.
 
 ## Requisitos de compilación
 
@@ -83,10 +83,5 @@ Antes de publicar capturas, ocultar datos personales, direcciones, medios de pag
 - **ISO/IEC 25010:2023:** características y subcaracterísticas para clasificar los requisitos de calidad.
 - **Pohl (2025)** y **SWEBOK Guide v4.0 (2024):** referencias complementarias de fundamentos de ingeniería de requisitos.
 
-Las citas del texto se resuelven desde `TA-TAR-01.bib`. Antes de entregar, comprobar contra los documentos originales la correspondencia entre las cláusulas citadas y cada afirmación; las propuestas del informe no constituyen una evaluación certificada de Temu.
 
-## Continuidad del trabajo
 
-El tercer avance completará la autoevaluación, las correcciones y las secciones de cierre; las capturas reales se insertan cuando estén disponibles.
-
-Las fechas de los commits deben corresponder a los días de trabajo reales. Cada versión de este proyecto es acumulativa: no reemplaza el contenido anterior por un documento parcial.
